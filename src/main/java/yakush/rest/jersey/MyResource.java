@@ -1,11 +1,11 @@
 package yakush.rest.jersey;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.print.attribute.standard.Media;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import java.util.Map;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -33,4 +33,46 @@ public class MyResource {
 
     }
 
+    @GET
+    @Path("param")
+    public String getParamFromRequest(
+            @DefaultValue("7") @QueryParam("int") int number,
+            @DefaultValue("string") @QueryParam("string") String string,
+            @DefaultValue("true") @QueryParam("boolean") Boolean bool) {
+
+        return "number: " + number +
+                "\nstring: " + string +
+                "\nboolean: " + bool;
+
+    }
+
+    @GET
+    @Path("context")
+    public String getContext(@Context HttpHeaders hh) {
+
+        MultivaluedMap<String, String> headers = hh.getRequestHeaders();
+        Map<String, Cookie> cookies = hh.getCookies();
+
+        return headers.toString() + "\n" + cookies.toString();
+
+    }
+
+    @POST
+    @Consumes("application/x-www-form-urlencoded")
+    public String postForm(
+            @FormParam("name") String name,
+            @FormParam("age") int age) {
+
+        return "Name: " + name +
+                "\nAge: " + age;
+    }
+
+    @POST
+    @Path("context")
+    @Consumes("application/x-www-form-urlencoded")
+    public String postForm(MultivaluedMap<String, String> formParams) {
+
+        return formParams.toString();
+
+    }
 }
