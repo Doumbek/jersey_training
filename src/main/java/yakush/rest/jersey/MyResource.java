@@ -48,12 +48,13 @@ public class MyResource {
 
     @GET
     @Path("context")
-    public String getContext(@Context HttpHeaders hh) {
+    public String getContext(@Context HttpHeaders hh,
+                             @QueryParam("header") String header) {
 
         MultivaluedMap<String, String> headers = hh.getRequestHeaders();
         Map<String, Cookie> cookies = hh.getCookies();
 
-        return headers.toString() + "\n" + cookies.toString();
+        return headers.get(header).toString();
 
     }
 
