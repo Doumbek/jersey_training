@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<planes>
+    <plane>
+        <model>ModelFromXML1</model>
+        <range>asd</range>
+        <max_load>44444</max_load>
+        <max_passengers>//..,./</max_passengers>
+    </plane>
+    <plane>
+        <model>ModelFromXML2</model>
+        <range>654654</range>
+        <max_load>9999</max_load>
+        <max_passengers>88</max_passengers>
+    </plane>
+</planes>
