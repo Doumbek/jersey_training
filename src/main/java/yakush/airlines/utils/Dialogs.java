@@ -1,38 +1,42 @@
 package yakush.airlines.utils;
 
 import yakush.airlines.parks.PassengerPlanesPark;
+import yakush.airlines.utils.reader.AbstractReader;
 import yakush.airlines.utils.reader.TxtFileReader;
 import yakush.airlines.utils.reader.XmlFileReader;
 
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import java.io.File;
 
 public class Dialogs {
 
-    public static void addPlanesFromFile(PassengerPlanesPark passengerPlanesPark) {
+    public static void addPlanesFromFile(WebTarget target) {
 
         boolean isRepeat = true;
 
         while (isRepeat) {
 
-            System.out.println("Choose file format:");
+            System.out.println("Choose file:");
             System.out.println("1 - txt");
             System.out.println("2 - xml");
             System.out.println("0 - cancel");
 
             int option = Console.chooseOption();
-            String fileName;
+            File file;
 
             switch (option) {
                 case 0:
                     isRepeat = false;
                     break;
                 case 1:
-                    fileName = Console.getStringFromConsole("Enter txt file name:");
-                    passengerPlanesPark.addNewPlanesFromFile(fileName, new TxtFileReader());
+                    file = new File(AbstractReader.DIR_WITH_FILES + "planes.txt");
+                    target.path("add").request().post(Entity.entity(file, MediaType.TEXT_PLAIN_TYPE));
                     break;
                 case 2:
-                    fileName = Console.getStringFromConsole("Enter xml file name:");
-                    passengerPlanesPark.addNewPlanesFromFile(fileName, new XmlFileReader());
+                    file = new File(AbstractReader.DIR_WITH_FILES + "planes.xml");
+                    target.path("add").request().post(Entity.entity(file, MediaType.TEXT_XML_TYPE));
                     break;
                 default:
                     System.out.println("\nYou should choose option from available values from menu!");

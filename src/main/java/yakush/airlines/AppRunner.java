@@ -72,9 +72,9 @@ public class AppRunner {
 				case 4:
 					Dialogs.searchPlanesBy(airlines_target);
 					break;
-//				case 5:
-//					Dialogs.addPlanesFromFile(passengerPlanesPark);
-//					break;
+				case 5:
+					Dialogs.addPlanesFromFile(airlines_target);
+					break;
 //				case 6:
 //					passengerPlanesPark.writePlanesInfoToFile();
 //					System.out.println("\nFile was successful created!");

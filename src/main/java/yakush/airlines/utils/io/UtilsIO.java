@@ -5,11 +5,7 @@ import java.util.ArrayList;
 
 public class UtilsIO {
 
-//	public static final String DIR_WITH_FILES = "files/";
-
-	public static ArrayList<String> readFile(String file_name) {
-
-		File file = new File(file_name);
+	public static ArrayList<String> readFile(File file) {
 
 		ArrayList<String> file_values = new ArrayList<String>();
 

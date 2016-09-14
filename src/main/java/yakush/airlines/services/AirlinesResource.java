@@ -6,9 +6,14 @@ import yakush.airlines.utils.Search;
 import yakush.airlines.utils.Sort;
 import yakush.airlines.utils.comporator.sort.ByModelComporator;
 import yakush.airlines.utils.comporator.sort.ByRangeComporator;
+import yakush.airlines.utils.io.UtilsIO;
+import yakush.airlines.utils.reader.TxtFileReader;
+import yakush.airlines.utils.reader.XmlFileReader;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.io.File;
 import java.util.Set;
 
 @Path("airlines")
@@ -63,6 +68,24 @@ public class AirlinesResource {
             @DefaultValue("0") @QueryParam("passengers") int maxPassCapacity) {
 
         return Search.searchResultAsString(passengerPlanesPark.findBy(model, range, maxLoadCapacity, maxPassCapacity));
+
+    }
+
+    @POST
+    @Path("add")
+    @Consumes(MediaType.TEXT_PLAIN)
+    public void addNewPlanesText(File file) {
+
+        passengerPlanesPark.addNewPlanesFromFile(file, new TxtFileReader());
+
+    }
+
+    @POST
+    @Path("add")
+    @Consumes(MediaType.TEXT_XML)
+    public void addNewPlanesXML(File file) {
+
+        passengerPlanesPark.addNewPlanesFromFile(file, new XmlFileReader());
 
     }
 

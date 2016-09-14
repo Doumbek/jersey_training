@@ -9,6 +9,7 @@ import yakush.airlines.utils.io.UtilsIO;
 import yakush.airlines.utils.jdbc.MySQLDBWorker;
 import yakush.airlines.utils.reader.AbstractReader;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,13 +34,13 @@ public class PassengerPlanesPark {
 		this.park.add(plane);
 	}
 
-	public void addNewPlanesFromFile(String fileName, AbstractReader reader) {
+	public void addNewPlanesFromFile(File file, AbstractReader reader) {
 
 		ArrayList<String> planes = null;
 
 		try {
 
-			planes = reader.read(fileName);
+			planes = reader.read(file);
 
 			for(String plane : planes) {
 
@@ -53,8 +54,6 @@ public class PassengerPlanesPark {
 				this.park.add(new PassengerPlanes(model, range, maxLoadCapacity, maxPassCapacity));
 
 			}
-
-//			System.out.println("\nPlanes was added successful!");
 
 		} catch (NoTxtFileException | NoXMLFileException e) {
 
