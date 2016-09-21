@@ -15,6 +15,7 @@ import yakush.airlines.utils.reader.XmlFileReader;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -75,10 +76,9 @@ public class AppRunner {
 				case 5:
 					Dialogs.addPlanesFromFile(airlines_target);
 					break;
-//				case 6:
-//					passengerPlanesPark.writePlanesInfoToFile();
-//					System.out.println("\nFile was successful created!");
-//					break;
+				case 6:
+					airlines_target.path("download").request().get(Response.class);
+					break;
 //				case 7:
 //					passengerPlanesPark.showPlanesFromDB();
 //					break;
@@ -90,7 +90,6 @@ public class AppRunner {
 		}
 
 	}
-
 
 }
 

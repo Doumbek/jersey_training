@@ -19,7 +19,6 @@ import java.util.*;
 public class PassengerPlanesPark {
 
 	private final ArrayList<PassengerPlanes> park = new ArrayList<PassengerPlanes>();
-	private static final String OUTPUT_INFO_FILE = "info.txt";
 
 	public PassengerPlanesPark () {
 		this.addNewPlane(new PassengerPlanes("Model3", 20000, 6000, 50));
@@ -77,8 +76,8 @@ public class PassengerPlanesPark {
 
 	}
 
-	public void writePlanesInfoToFile() {
-		UtilsIO.writeFile(OUTPUT_INFO_FILE, this.toString());
+	public File writePlanesInfoToFile(String file_name) {
+		return UtilsIO.writeFile(file_name, this.toString());
 	}
 
 	public int getCommonPassCapacity() {

@@ -89,6 +89,18 @@ public class AirlinesResource {
 
     }
 
+    @GET
+    @Path("download")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response getFile() {
+
+        Response.ResponseBuilder response = Response.ok((Object) passengerPlanesPark.writePlanesInfoToFile("files/info.txt"));
+
+        return response.header("Content-Disposition",
+                "attachment; filename=\"info.txt\"").build();
+
+    }
+
 //    @GET
 //    @Path("search")
 //    @Produces(MediaType.APPLICATION_JSON)

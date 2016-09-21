@@ -45,7 +45,7 @@ public class UtilsIO {
 
 	}
 
-	public static void writeFile(String file_name, String values) {
+	public static File writeFile(String file_name, String values) {
 
 		File file = new File(file_name);
 		PrintWriter writer = null;
@@ -73,6 +73,8 @@ public class UtilsIO {
 			}
 
 		}
+
+		return file;
 
 	}
 
